@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Habit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #ffc107;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background: #e0a800;
+        }
+
+        p {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Habit</h1>
+    <form method="POST" action="{{ url_for('update_habit', habit_id=habit._id) }}">
+        <label for="habit_name">Habit Name:</label>
+        <input type="text" id="habit_name" name="habit_name" value="{{ habit.name }}" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required>{{ habit.description }}</textarea>
+
+        <label for="frequency">Frequency (in hours):</label>
+        <input type="number" id="frequency" name="frequency" value="{{ habit.frequency }}" min="1" required>
+
+        <label for="reminder_time">Start Time:</label>
+        <input type="datetime-local" id="reminder_time" name="reminder_time" value="{{ habit.reminder_time|replace(' ', 'T') }}" required>
+
+        <button type="submit">Update Habit</button>
+    </form>
+
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>

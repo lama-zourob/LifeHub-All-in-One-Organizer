@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Activity</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; margin: 0; }
+        .container { width: 80%; margin: auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h2 { color: #333; text-align: center; }
+        .details { margin: 20px 0; padding: 15px; background-color: #e9ecef; border-left: 5px solid #007bff; }
+        .details p { margin: 5px 0; font-size: 16px; color: #333; }
+        .button { display: block; width: 100%; padding: 10px; margin: 10px 0; background-color: #007bff; color: white; text-align: center; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease; }
+        .button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Activity Details</h2>
+        <div class="details">
+            <p><strong>Last Confirmed Time:</strong> {{ last_confirmed }}</p>
+            <p><strong>Number of Confirmations Today:</strong> {{ today_count }}</p>
+        </div>
+        <a href="{{ url_for('habit') }}" class="button">Back to Habits</a>
+    </div>
+</body>
+</html>

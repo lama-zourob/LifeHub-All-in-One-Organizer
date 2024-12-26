@@ -41,6 +41,17 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('events') }}">Events Calendar</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('habit') }}">Habit Tracker</a>
+                </li>
+                <ul class="navbar-nav ml-auto">
+                  {% if 'user_id' in session %}
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-outline-light" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                  {% endif %}
+                </ul>
+                
                 <!-- Add To-Do Button Dropdown -->
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,6 +92,9 @@
                 {% block content %}
                     <h2>Welcome to LifeHub</h2>
                     <p>Your personal life management tool</p>
+                    <div class="text-center mt-4">
+                      <a href="{{ url_for('habit') }}" class="btn btn-primary">Go to Habit Tracker</a>
+                    </div>
                 {% endblock %}
             </div>
 

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .habit-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .habit-info {
+            flex-grow: 1;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        .confirm-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .update-button {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .remove-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .view-activity-button {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Habit Tracker</h1>
+    <a href="/add_habit" style="display: block; margin-bottom: 20px;">Add New Habit</a>
+    <ul>
+        {% for habit in habits %}
+        <li class="habit-item">
+            <div class="habit-info">
+                <strong>{{ habit.name }}</strong> - {{ habit.frequency }} times/day (Streak: {{ habit.streak }})
+            </div>
+            <div class="actions">
+                <form action="/confirm_habit" method="POST">
+                    <input type="hidden" name="habit_id" value="{{ habit._id }}">
+                    <button type="submit" class="confirm-button">Confirm Habit</button>
+                </form>
+                <form action="/update_habit" method="GET">
+                    <input type="hidden" name="habit_id" value="{{ habit._id }}">
+                    <button type="submit" class="update-button">Update</button>
+                </form>
+                <form action="/remove_habit" method="POST">
+                    <input type="hidden" name="habit_id" value="{{ habit._id }}">
+                    <button type="submit" class="remove-button">Remove</button>
+                </form>
+                <form action="/view_activity" method="GET">
+                    <input type="hidden" name="habit_id" value="{{ habit._id }}">
+                    <button type="submit" class="view-activity-button"><i class="fas fa-eye"></i> View Activity</button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
